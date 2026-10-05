@@ -1,0 +1,38 @@
+# Evan + Liam's Plane System
+# Designed as a lightweight Plane Mode rather than a custom vehicle entity.
+
+plane:
+  max-health: 100.0
+  engine-start-seconds: 4
+  startup-max-distance: 4.0
+
+flight:
+  # Throttle is normalized from 0.0 to 1.0.
+  starting-throttle: 0.10
+  acceleration-per-tick: 0.012
+  strafe-acceleration-factor: 0.45
+  coast-decay-per-tick: 0.003
+  brake-per-tick: 0.030
+
+  # Bukkit flight speed; 0.1 is approximately normal creative-flight speed.
+  min-fly-speed: 0.05
+  max-fly-speed: 0.28
+
+  landing-max-throttle: 0.18
+  ground-check-distance: 2.2
+
+collision:
+  base-damage: 8.0
+  max-speed-damage: 55.0
+  catastrophic-throttle: 0.86
+  cooldown-ticks: 12
+  scan-base-distance: 0.75
+  scan-movement-multiplier: 4.0
+
+crash:
+  # Damage to the pilot when the plane is destroyed. The explosion does not break blocks.
+  player-damage: 12.0
+
+effects:
+  particles: true
+  sounds: true
