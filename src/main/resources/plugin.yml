@@ -1,9 +1,9 @@
 name: EaglerAirplaneMod
-version: '1.0.0'
+version: '1.1.0'
 main: org.pawling.eaglerairplane.EaglerAirplanePlugin
 api-version: '1.21.11'
 author: Pawling CSD Game Development
-description: Evan and Liam's craftable Plane Mode system with engine startup, throttle, damage, crashes, and safe landing.
+description: Evan and Liam's fixed-wing Plane Mode with runway takeoff, airspeed, lift, stalls, banking, damage, and crashes.
 
 commands:
   plane:

@@ -1,5 +1,13 @@
-# Evan + Liam's Plane System
-# Designed as a lightweight Plane Mode rather than a custom vehicle entity.
+# Evan + Liam's Plane System v1.1
+# Fixed-wing movement model built entirely server-side for Eaglercraft compatibility.
+#
+# Controls:
+#   Sprint  = increase throttle
+#   Crouch  = decrease throttle / wheel brake
+#   Mouse   = command yaw and pitch
+#
+# True camera roll cannot be forced by a Paper plugin, so roll/bank is simulated
+# in the aircraft physics and displayed in the HUD.
 
 plane:
   max-health: 100.0
@@ -7,30 +15,62 @@ plane:
   startup-max-distance: 4.0
 
 flight:
-  # Throttle is normalized from 0.0 to 1.0.
-  starting-throttle: 0.10
-  acceleration-per-tick: 0.012
-  strafe-acceleration-factor: 0.45
-  coast-decay-per-tick: 0.003
-  brake-per-tick: 0.030
+  # Throttle is retained when the player releases the controls.
+  starting-throttle: 0.18
+  throttle-increase-per-tick: 0.008
+  throttle-decrease-per-tick: 0.012
 
-  # Bukkit flight speed; 0.1 is approximately normal creative-flight speed.
-  min-fly-speed: 0.05
-  max-fly-speed: 0.28
+  # Speeds are server velocity in blocks/tick.
+  max-airspeed: 1.05
+  cruise-speed: 0.72
+  takeoff-speed: 0.48
+  stall-speed: 0.34
 
-  landing-max-throttle: 0.18
-  ground-check-distance: 2.2
+  ground-acceleration-per-tick: 0.008
+  air-acceleration-per-tick: 0.005
+  drag-per-tick: 0.003
+  rolling-drag-per-tick: 0.0012
+  ground-brake-per-tick: 0.035
+  climb-drag-per-tick: 0.004
+  bank-drag-per-tick: 0.0015
+
+  # Lower values make the plane respond more gradually to where the player looks.
+  ground-steering-response: 0.18
+  air-steering-response: 0.08
+
+  max-pitch-degrees: 35.0
+  takeoff-pitch-degrees: 7.5
+
+  # Roll cannot rotate the actual player camera. It is a physics/HUD bank value.
+  max-bank-degrees: 45.0
+  bank-per-yaw-degree: 6.0
+  bank-response: 0.18
+
+  # Minecraft gravity is about 0.08 blocks/tick^2.
+  # Lift support scales with airspeed and disappears during a stall.
+  gravity-compensation: 0.08
+  stall-sink-max: 0.14
+  bank-lift-penalty: 0.025
+
+  landing-max-speed: 0.52
+  landing-max-throttle: 0.35
+  landing-max-pitch-degrees: 15.0
+  ground-check-distance: 1.5
+
+  # Suppresses ordinary WASD movement so the physics engine controls motion.
+  # Sprint still works as the throttle-up input.
+  player-walk-speed: 0.02
 
 collision:
   base-damage: 8.0
   max-speed-damage: 55.0
-  catastrophic-throttle: 0.86
+  catastrophic-airspeed: 0.88
   cooldown-ticks: 12
   scan-base-distance: 0.75
-  scan-movement-multiplier: 4.0
+  scan-movement-multiplier: 2.4
 
 crash:
-  # Damage to the pilot when the plane is destroyed. The explosion does not break blocks.
+  # Pilot damage when the plane is destroyed. Explosion effects do not break terrain.
   player-damage: 12.0
 
 effects:
