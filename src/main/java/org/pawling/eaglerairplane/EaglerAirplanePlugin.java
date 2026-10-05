@@ -439,6 +439,7 @@ public final class EaglerAirplanePlugin extends JavaPlugin implements Listener, 
 
         PlaneSession session = sessions.remove(uuid);
         if (session != null) {
+            restoreFlightState(player, session);
             event.deathMessage(Component.text(player.getName() + "'s plane was lost in the crash."));
         }
     }
